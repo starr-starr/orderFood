@@ -1,0 +1,36 @@
+.bar{
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 40rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 700rem;
+    height: 80rem;
+    background-color: #333;
+    border-radius: 20px;
+    z-index: 9999;
+}
+
+button{
+    width: 150rem;
+    background-color:orange;
+    border-style: none;
+    font-size: 35rem;
+    border-radius: 25rem;
+}
+
+.price{
+    display: flex;
+    align-items: center;
+    margin-left: 60rem;
+    color: #fff;
+    font-size: 33rem;
+    font-weight: bold;
+}
+
+.price::before{
+    content: '$';
+    font-size: 36rem;
+} 

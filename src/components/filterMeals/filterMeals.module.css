@@ -1,0 +1,36 @@
+.filterMeals{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    height: 100rem;
+    background-color: #fff;
+    z-index: 999;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.searchInput{
+    width: 650rem;
+    height: 70rem;
+    border: none;
+    border-radius: 15px;
+    background-color: #f2f2f2;
+    font-size: 32rem;
+    /* padding-left: 45rem; */
+    text-indent: 45rem;
+}
+
+.inputOuter{
+    position: relative;
+}
+
+.searchIcon{
+    position: absolute;
+    left: 4rem;
+    top:18rem;
+    bottom: 0;
+    font-size: 40rem;
+    color: red;
+}

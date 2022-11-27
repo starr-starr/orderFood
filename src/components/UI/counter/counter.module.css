@@ -1,0 +1,28 @@
+.sub,
+.add{
+    display: flex;
+    border: none;
+    background-color: #FCBF49;
+    justify-content: center;
+    align-items: center;
+    width: 40rem;
+    height: 40rem;
+    border-radius: 50%;
+    font-size: 28rem;
+    padding: 0;
+}
+
+.sub{
+    background-color: #fff;
+    border:  1px solid black;
+}
+
+.count{
+    font-size: 32rem;
+    margin: 0 5px;
+}
+
+.counter{
+    display: flex;
+    align-items: center;
+}
