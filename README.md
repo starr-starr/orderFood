@@ -13,5 +13,5 @@
     fill: white;<br>
 }<br>
 如上.anticon-account-book为在调试工具中所找，在解决这个问题中了解到了类名哈希化，：global为了防止影响到其他样式<br><br>
->9. onClick={e => e.stopPropagation()} 阻止事件冒泡
->10.暂时这些，以后回来充实案例再来Readme
+>9. onClick={e => e.stopPropagation()} 阻止事件冒泡<br><br>
+>10.暂时这些，以后回来充实案例再来Readme<br><br>
