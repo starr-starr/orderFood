@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 import './App.css';
 import Meals from './components/meals/meals';
 import CardContext from './store/card-context';
@@ -57,65 +57,107 @@ const MealsData = [
 ];
 function App() {
 
-  const [mealsData,setMealsData] = useState(MealsData)
+ const cartReducer = (state,action) => {
+    
+    const newCart = {...state}
 
-  const [cartData, setCartData] = useState({
-    items: [],
-    totalAmount: 0,
-    totalPrice: 0
-});
+    switch(action.type){
+      case 'addItem' : 
+         if (newCart.items.indexOf(action.meal) === -1) {
+         newCart.items.push(action.meal);
+         action.meal.amount = 1;
+         } else {
+         action.meal.amount += 1;
+         }
+         newCart.totalAmount += 1;
+         newCart.totalPrice += action.meal.price;
+         return newCart
+      case 'removeItem' :
+        action.meal.amount -= 1;
+        if (action.meal.amount === 0) {
+        newCart.items.splice(newCart.items.indexOf(action.meal), 1);
+        }
+        newCart.totalAmount -= 1;
+        newCart.totalPrice -= action.meal.price;
+        return newCart;
+      case 'clearCart' :
+        newCart.items.forEach(item => delete item.amount)
+        newCart.items = []
+        newCart.totalAmount = 0 
+        newCart.totalPrice = 0
+        return newCart
+    }
+ }
 
-const addItem = (meal) => {
 
-    const newCart = {...cartData}
+const [mealsData,setMealsData] = useState(MealsData)
 
-    if (newCart.items.indexOf(meal) === -1) {
-      // 将meal添加到购物车中
-      newCart.items.push(meal);
-      // 修改商品的数量
-      meal.amount = 1;
-  } else {
-      // 增加商品的数量
-      meal.amount += 1;
-  }
-  // 增加总数
-  newCart.totalAmount += 1;
-  // 增加总金额
-  newCart.totalPrice += meal.price;
 
-  // 重新设置购物车
-  setCartData(newCart);
-} 
+const [cartData,cartDispatch] = useReducer(cartReducer,
+    {
+      items: [],
+      totalAmount: 0,
+      totalPrice: 0
+    }
+  )
+  
+// const [cartData, setCartData] = useState({
+//     items: [],
+//     totalAmount: 0,
+//     totalPrice: 0
+// });
 
-const removeItem = (meal) => {
-  // 复制购物车
-  const newCart = {...cartData};
+// const addItem = (meal) => {
 
-  // 减少商品的数量
-  meal.amount -= 1;
+//     const newCart = {...cartData}
 
-  // 检查商品数量是否归0
-  if (meal.amount === 0) {
-      // 从购物车中移除商品
-      newCart.items.splice(newCart.items.indexOf(meal), 1);
-  }
+//     if (newCart.items.indexOf(meal) === -1) {
+//       // 将meal添加到购物车中
+//       newCart.items.push(meal);
+//       // 修改商品的数量
+//       meal.amount = 1;
+//   } else {
+//       // 增加商品的数量
+//       meal.amount += 1;
+//   }
+//   // 增加总数
+//   newCart.totalAmount += 1;
+//   // 增加总金额
+//   newCart.totalPrice += meal.price;
 
-  // 修改商品总数和总金额
-  newCart.totalAmount -= 1;
-  newCart.totalPrice -= meal.price;
+//   // 重新设置购物车
+//   setCartData(newCart);
+// } 
 
-  setCartData(newCart);
-};
+// const removeItem = (meal) => {
+//   // 复制购物车
+//   const newCart = {...cartData};
 
-const clearCart = (meal) => {
+//   // 减少商品的数量
+//   meal.amount -= 1;
+
+//   // 检查商品数量是否归0
+//   if (meal.amount === 0) {
+//       // 从购物车中移除商品
+//       newCart.items.splice(newCart.items.indexOf(meal), 1);
+//   }
+
+//   // 修改商品总数和总金额
+//   newCart.totalAmount -= 1;
+//   newCart.totalPrice -= meal.price;
+
+//   setCartData(newCart);
+// };
+
+// const clearCart = (meal) => {
  
-  const newCart = {...cartData}
-  newCart.items.forEach(item => delete item.amount)
-  newCart.items = []
-  newCart.totalAmount = 0 
-  newCart.totalPrice = 0
-  setCartData(newCart)
-}
+//   const newCart = {...cartData}
+//   newCart.items.forEach(item => delete item.amount)
+//   newCart.items = []
+//   newCart.totalAmount = 0 
+//   newCart.totalPrice = 0
+//   setCartData(newCart)
+// }
 
 const filterHandler = (keyWord) => {
     if (!keyWord) {
@@ -129,7 +171,7 @@ const filterHandler = (keyWord) => {
 
   return (
     <CardContext.Provider 
-    value={{...cartData,addItem,removeItem,clearCart}}>
+    value={{...cartData,cartDispatch}}>
 
       <div>
       <Filtermeals onFilter={filterHandler}></Filtermeals> 

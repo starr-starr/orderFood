@@ -1,4 +1,4 @@
-import React,{useContext, useState} from "react";
+import React,{useContext, useEffect, useState} from "react";
 import classes from '../Cart/cart.module.css'
 import {AccountBookFilled} from '@ant-design/icons'
 import CardContext from "../../store/card-context";
@@ -12,6 +12,18 @@ const Cart = () => {
 
     const [showDetails,setShowdetails] = useState(false)
     const [showCheckout,setShowCheckout] = useState(false)
+
+    //渲染完成之后执行，因此不会陷入死循环
+    //将Effect中的所有局部变量都设置为依赖，更加安全。
+    //如果第二个参数传的是一个空数组 ，则其只触发一次（在初始化时）
+    useEffect( () => {
+        if(bool === 0){
+            setShowdetails(false)
+            setShowCheckout(false)
+        }
+    },[ctx,setShowCheckout,setShowdetails])
+
+
     const toggleDetailshandler = () => {
         if(ctx.totalAmount === 0) {
             setShowdetails(false)

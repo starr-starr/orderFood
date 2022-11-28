@@ -8,11 +8,13 @@ const Counter = (props) => {
     const ctx = useContext(CardContext)
 
     const addButtonHandler = () => {
-        ctx.addItem(props.meal)
+        //ctx.addItem(props.meal)
+        ctx.cartDispatch({type:'addItem',meal:props.meal})
     }
 
     const subButtonHandler = () => {
-        ctx.removeItem(props.meal)
+        //ctx.removeItem(props.meal)
+        ctx.cartDispatch({type:'removeItem',meal:props.meal})
     }
 
     return(

@@ -20,7 +20,8 @@ const Cartdetails = () => {
     }
 
     const okHandler = () => {
-        ctx.clearCart()
+        //ctx.clearCart()
+        ctx.cartDispatch({type:'clearCart'})
     }
     return (
         <Backdrop>
