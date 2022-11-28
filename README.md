@@ -1,70 +1,17 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#基于React开发的OrderFood
+>>1.2022.11.27号在看完黑马的React（）以及李立超老师的React（）的一半而写（李立超老师的案例）；<br><br>
+>2.在跟着视频敲的过程中，发现黑马的视频较老，以及学长的建议别用class组件，因此全用函数组件，并了解了React脚手架中为了样式隔离有name.module.css来防止重名污染；<br><br>
+>3.在函数组件中通过const[name，setname]来存储以及更新状态。<br><br>
+>4.之前在看黑马视频时了解到了context但没有去敲，这个案例中了解到了context的用法（  <br>const name = React.creatcontext <br>usecontext（name）<br> <组件名.Provider value={{}}/> ）<br><br>
+>5.真正体会到了React的组件化的好处，需要数据时通过props和contect进行传递数据，修改时只需要修改单独组件，而且样式相同或者相差不大的组件可以直接复用。<br><br>
+>6.将不同的React组件放在不同的分类中，UI中放一些UI组件，assets中放一些静态资源（练习时将img们放在index.html中），store文件夹中放context等等。<br><br>
+>7.写的途中遇到了一点小问题，感谢一位热心网友远程帮我看（App.js中的filterHandler），即实现搜索框的过滤作用时，onchange事件一触发我直接在展示的数据的基础上过滤数据，肯定无法展示数据，在帮助下判断过滤后的数组中有无数据再决定展示给用户，并在过程中接触到了防抖，感谢！<br><br>
+>8.并复习到了一些css样式设计，学到了z-index，::before/::after，overflow，做重要的是了解到了ant-design组件库，并且当设置某个组件的svg属性时，在调试中找到svg的父级类名<br>
+:global(.anticon-account-book svg){<br>
+    width: 100rem;<br>
+    height: 75rem;<br>
+    fill: white;<br>
+}<br>
+如上.anticon-account-book为在调试工具中所找，在解决这个问题中了解到了类名哈希化，：global为了防止影响到其他样式<br><br>
+>9. onClick={e => e.stopPropagation()} 阻止事件冒泡
+>10.暂时这些，以后回来充实案例再来Readme
